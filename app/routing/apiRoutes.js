@@ -4,7 +4,7 @@
 // We are linking our routes to a series of "data" sources.
 // These data sources hold arrays of information on friendsArray.
 // ===============================================================================
-var friendsArray = require("..friends/data/friends");
+var friendsArray = require("..friendfinder/app/data/friends");
 // var path = require("path");
 
 // Import the list of friend entries
@@ -16,7 +16,12 @@ module.exports = function(app) {
 	// Total list of friend entries
 	app.get("/api/friends", function(req, res) {
 		res.json(friendsArray);
-	});
+  });
+  
+  // if (friendsArray.length < 5) {
+  //  friendsArray.push(req.body);
+  //   res.json(true);
+  // }
 
 	// Add new friend entry
 	app.post('/api/friends', function(req, res) {

@@ -204,8 +204,6 @@
 							<h4 class="modal-title">Check Out Your New Best Friend!</h4>
 						</div>
 						<div class="modal-body">
-							<h2 id="bestFriend"></h2>
-							<img id="bestFriendPhoto" src="#">
 							<p>HI!.</p>
 						</div>
 						<div class="modal-footer">
@@ -242,7 +240,11 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 
-				// Activate submit button
+				// Activate submit button-- But i feel like i wil use modal button uP. 
+					// -yoou got the modal buttom working.-well its there... but keep your submit button. 
+				// $("#add-btn").on("click", function () {
+						// 	event.preventDefault();
+						// Gather user inputs
 				$(".submitBtn").on("click", function (event) {
 					event.preventDefault();
 					var valid = true;
@@ -255,9 +257,7 @@
 						valid = false;
 					}
 					if (valid === true) {
-						// $("#add-btn").on("click", function () {
-						// 	event.preventDefault();
-						// Gather user inputs
+						
 						var friendInput = {
 							name: $("#name").val().trim(),
 							photo: $("#photo").val().trim(),
@@ -274,48 +274,50 @@
 								$('#question10').val().trim()
 							]
 						};
-						alert("Finding a friend!");
-						console.log(friendinput);
 
-						var currentURL = window.location.origin;
-						// Ajax call for receiving response after POST req
-						$.post(currentURL + "/api/friends", friendInput, function (data) {
-							$("#bestFriend").text(data.name);
-							$("#bestFriendPhoto").attr("src", data.photo);
-							$("#bestFriendModal").modal("toggle");
+						// Add user inputs to friends list
+					$.post('/api/friends', friendInput)
+						.done(function (data) {
+							$('#userMatch').html(data.matchName);
+							$("#userMatchImage").attr("src", data.matchImage);
+							// Pop open the modal dialog
+							$('#mybestFriendModal').modal('open');
+							console.log(data);
+							$('#caption').text("Your new SuperHero bestfriend is.. " + data.name + "!");
+							$('#imagepreview').attr('src', data.photo);
+							$('#imagemodal').modal('show');
 						});
-					} else {
-						// If a required field is missing, show alert
-						alert("Survey is incomplete!");
-					}
-				});
+					$("#name").val("");
+					$("#photo").val("");
+					[$("#question1").val(""), $("#question2").val(""), $("#question3").val(""), $("#question4").val(""), $(
+							"#question5").val(""), $("#question6")
+						.val(""), $("#question7").val(""), $("#question8").val(""), $("#question9").val(""), $("#question10").val("")
+					]
+				}
+			}
+		
 
 
-				// Add user inputs to friends list
-				// 	$.post('/api/friends', friendInput)
-				// 		.done(function (data) {
-				// 			$('#userMatch').html(data.matchName);
-				// 			$("#userMatchImage").attr("src", data.matchImage);
-				// 			// Pop open the modal dialog
-				// 			$('#modal1').modal('open');
-				// 			console.log(data);
-				// 			$('#caption').text("Your new SuperHero bestfriend is.. " + data.name + "!");
-				// 			$('#imagepreview').attr('src', data.photo);
-				// 			$('#imagemodal').modal('show');
-				// 		});
-				// 	$("#name").val("");
-				// 	$("#photo").val("");
-				// 	[$("#question1").val(""), $("#question2").val(""), $("#question3").val(""), $("#question4").val(""), $(
-				// 			"#question5").val(""), $("#question6")
-				// 		.val(""), $("#question7").val(""), $("#question8").val(""), $("#question9").val(""), $("#question10").val("")
-				// 	]
-				// });
 
-				// console.log('response = ' + JSON.stringify(data));
-				// Set the name and image values of friend match
-					$("#userMatch").html(data.matchName);
-				$("#userMatchImage").attr("src", data.matchImage);
-				// Pop open the modal dialog
-				$('#bestFriendModals').modal('open');
-				// });
-				// });
+// this is ur doub				// 	$("#userMatch").html(data.matchName);
+				// $("#userMatchImage").attr("src", data.matchImage);
+				// // Pop open the modal dialog
+				// $('#mybestFriendModal').modal('open');
+					// 	alert("Finding a friend!");
+					// 	console.log(friendinput);
+
+					// 	var currentURL = window.location.origin;
+					// 	// Ajax call for receiving response after POST req
+					// 	$.post(currentURL + "/api/friends", friendInput, function (data) {
+					// 		$("#bestFriend").text(data.name);
+					// 		$("#bestFriendPhoto").attr("src", data.photo);
+					// 		$("#bestFriendModal").modal("toggle");
+					// 	});
+					// } else {
+					// 	// If a required field is missing, show alert
+					// 	alert("Survey is incomplete!");
+					
+
+				// 
+				// }
+				
