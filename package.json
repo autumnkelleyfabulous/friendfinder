@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+ 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/autumnkelleyfabulous/friendfinder.git"
@@ -21,8 +18,12 @@
     "express": "^4.16.4",
     "path": "^0.12.7",
     "require": "^2.4.20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
-  }
+}
 
 
 
