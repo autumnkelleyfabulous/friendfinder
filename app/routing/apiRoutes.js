@@ -4,11 +4,11 @@
 // We are linking our routes to a series of "data" sources.
 // These data sources hold arrays of information on friendsArray.
 // ===============================================================================
-var friendsArray = require("..friendfinder/app/data/friends");
+var friendsArray = require("../data/friends");
 // var path = require("path");
 
 // Import the list of friend entries
-// var friendsArray = require('../data/friends.js');
+var friendsArray = require('../data/friends.js');
 
 // Export API routes
 module.exports = function(app) {
@@ -18,6 +18,7 @@ module.exports = function(app) {
 		res.json(friendsArray);
   });
   
+  // NO
   // if (friendsArray.length < 5) {
   //  friendsArray.push(req.body);
   //   res.json(true);
@@ -25,7 +26,7 @@ module.exports = function(app) {
 
 	// Add new friend entry
 	app.post('/api/friends', function(req, res) {
-		console.log(req,body.scores);
+		// console.log(req,body.scores);
 // user details
 		var user = req.body;
 // parseInt for scores
@@ -36,7 +37,7 @@ for(var i = 0; i < user.scores.length; i++) {
     var bestFriendIndex = 0;
     var minimumDifference = 40;
 
-    // in this for-loop, start off with a zero difference and compare the user and the ith friend scores, one set at a time
+    // in this for-loop, use a zero difference and compare the person and the ith friend scores, one set at a time
     //  whatever the difference is, add to the total difference
     for(var i = 0; i < friendsArray.length; i++) {
       var totalDifference = 0;
